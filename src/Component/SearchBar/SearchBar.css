@@ -15,6 +15,7 @@
   align-items: center;
   padding-left: 25px;
   flex-grow: 1;
+  gap: 15px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -26,6 +27,7 @@
 .search-icon {
   width: 24px;
   height: 24px;
+  
 }
 
 .search-field {
@@ -62,6 +64,7 @@
   border: none;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

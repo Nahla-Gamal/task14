@@ -8,6 +8,7 @@ export const ThemeContext = createContext(null);
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [profileData, setProfileData] = useState({});
 
   return (
     <main>
@@ -15,8 +16,8 @@ function App() {
         <div className={`page ${theme}`}>
           <div className="theme-content">
             <ToggleHeader></ToggleHeader>
-            <SearchBar></SearchBar>
-            <Content></Content>
+            <SearchBar setProfileData={setProfileData}></SearchBar>
+            <Content profileData={profileData}></Content>
           </div>
         </div>
       </ThemeContext.Provider>

@@ -11,39 +11,42 @@ import OfficeBuildingLight from "../../../public/images/officeLight.png";
 import { ThemeContext } from "../../App";
 import { useContext } from "react";
 
-function Content() {
+function Content(props) {
   const themeContext = useContext(ThemeContext);
 
   return (
     <div className="user-profile">
       <div className="user-pic">
-        <img className="profile-img" src={ProfileImg} />
+        <img className="profile-img" src={props.profileData.avatar_url || ProfileImg} />
       </div>
       <div className="profile-info">
         <div className="user-details">
           <div className="name-nickname">
-            <label className="user-name">The Octocat</label>
+            <label className="user-name">{props.profileData.login}</label>
             <label className="user-nickname">@octocat</label>
           </div>
-          <label className="profile-date">Joined 25 Jan 2011</label>
+          <label className="profile-date">{props.profileData.created_at}</label>
         </div>
         <div className="more-info">
-          <p className="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-            odio. Quisque volutpat mattis eros.
-          </p>
+          <p className="description">{props.profileData.bio}</p>
           <div className="profile-action">
             <div className="following">
               <label className="action-type">Repos</label>
-              <label className="action-number">8</label>
+              <label className="action-number">
+                {props.profileData.public_repos}
+              </label>
             </div>
             <div className="following">
               <label className="action-type">Followers</label>
-              <label className="action-number">3938</label>
+              <label className="action-number">
+                {props.profileData.followers}
+              </label>
             </div>
             <div className="following">
               <label className="action-type">Following</label>
-              <label className="action-number">9</label>
+              <label className="action-number">
+                {props.profileData.following}
+              </label>
             </div>
           </div>
           <div className="profile-contact">
@@ -54,7 +57,9 @@ function Content() {
                 ) : (
                   <img className="location-img" src={LocationIconLight} />
                 )}
-                <label className="link-address">San Francisco</label>
+                <label className="link-address">
+                  {props.profileData.location || "Not Available"}
+                </label>
               </div>
               <div className="links">
                 {themeContext.theme == "light" ? (
@@ -64,10 +69,11 @@ function Content() {
                 )}
                 <a
                   className="link-address"
-                  href="https://github.blog"
+                  href={props.profileData.blog}
                   target="_blank"
+                  disabled={!props.profileData.blog}
                 >
-                  https://github.blog
+                  {props.profileData.blog ? "blog" : "Not Available"}
                 </a>
               </div>
             </div>
@@ -78,7 +84,9 @@ function Content() {
                 ) : (
                   <img className="twitter-img" src={TwitterIconLight} />
                 )}
-                <label className="link-address">Not Available</label>
+                <label className="link-address">
+                  {props.profileData.twitter_username || "Not Available"}
+                </label>
               </div>
               <div className="links">
                 {themeContext.theme == "light" ? (
@@ -86,7 +94,14 @@ function Content() {
                 ) : (
                   <img className="office-img" src={OfficeBuildingLight} />
                 )}
-                <label className="link-address">@github</label>
+                <a
+                  className="link-address"
+                  href={props.profileData.html_url}
+                  target="_blank"
+                  disabled={!props.profileData.html_url}
+                >
+                  {props.profileData.html_url ? "@github" : "Not Available"}
+                </a>
               </div>
             </div>
           </div>

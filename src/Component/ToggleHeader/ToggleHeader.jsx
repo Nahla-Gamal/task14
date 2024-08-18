@@ -7,9 +7,8 @@ import { useContext } from "react";
 function ToggleHeader() {
   const themeContext = useContext(ThemeContext);
 
-  function handleOnChange(event) {
+  function handleOnChange() {
     let newValue;
-    console.log("event.target.checked", event);
     if (themeContext.theme == "light") {
       newValue = "dark";
     } else {
